@@ -229,5 +229,6 @@ public class SystemSettingsValidators {
                     }
                 });
         VALIDATORS.put(System.ACCENT_COLOR, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.GRADIENT_COLOR, ANY_INTEGER_VALIDATOR);
     }
 }

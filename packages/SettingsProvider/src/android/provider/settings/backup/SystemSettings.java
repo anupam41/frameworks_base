@@ -92,6 +92,7 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.PROXIMITY_ON_WAKE,
         Settings.System.COLOR_BUCKET_OVERLAY,
-        Settings.System.ACCENT_COLOR
+        Settings.System.ACCENT_COLOR,
+        Settings.System.GRADIENT_COLOR
     };
 }
