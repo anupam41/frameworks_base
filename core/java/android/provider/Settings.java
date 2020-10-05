@@ -4894,6 +4894,12 @@ public final class Settings {
         public static final String QS_COLUMNS_PORTRAIT = "qs_columns_portrait";
 
         /**
+         * Whether to display cross sign for a data disabled connection
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
+        /**
          * How many columns to show in the qs panel when in landscape
          * @hide
          */
