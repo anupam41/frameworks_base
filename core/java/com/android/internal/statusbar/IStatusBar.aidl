@@ -242,4 +242,8 @@ oneway interface IStatusBar
     void toggleCameraFlashOff();
 
     void killForegroundApp();
+    /**
+     * Used to block or unblock usage of gestural navigation
+     */
+    void setBlockedGesturalNavigation(boolean blocked);
 }
