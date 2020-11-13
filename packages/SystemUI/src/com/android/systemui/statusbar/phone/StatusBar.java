@@ -1137,9 +1137,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                     }
                 }, OverlayPlugin.class, true /* Allow multiple plugins */);
 
-        mCustomSettingsObserver = new CustomSettingsObserver(mHandler);
-        mCustomSettingsObserver.observe();
-        mCustomSettingsObserver.update();
     }
 
     // ================================================================================
@@ -2141,38 +2138,19 @@ public class StatusBar extends SystemUI implements DemoMode,
     void setUserSetupForTest(boolean userSetup) {
         mUserSetup = userSetup;
     }
+	private void setQsBatteryPercentMode() {
+	if (mQSBarHeader != null) {
+	((QuickStatusBarHeader) mQSBarHeader).setBatteryPercentMode();
+	}
+    }
 
-    private CustomSettingsObserver mCustomSettingsObserver = new CustomSettingsObserver(mHandler);
-    private class CustomSettingsObserver extends ContentObserver {
-        CustomSettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_SHOW_BATTERY_PERCENT),
-                    false, this, UserHandle.USER_ALL);
+	@Override
+	public void setBlockedGesturalNavigation(boolean blocked) {
+	if (getNavigationBarView() != null) {
+	getNavigationBarView().setBlockedGesturalNavigation(blocked);
+	    }
 	}
 
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.QS_SHOW_BATTERY_PERCENT))) {
-                setQsBatteryPercentMode();
-            }
-        }
-
-        public void update() {
-            setQsBatteryPercentMode();
-        }
-    }
-
-    private void setQsBatteryPercentMode() {
-        if (mQSBarHeader != null) {
-            ((QuickStatusBarHeader) mQSBarHeader).setBatteryPercentMode();
-        }
-    }
     /**
      * All changes to the status bar and notifications funnel through here and are batched.
      */
@@ -4400,6 +4378,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 		resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_PRIMARY_LABEL),
                     false, this, UserHandle.USER_ALL);
+		resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_SHOW_BATTERY_PERCENT),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4408,6 +4389,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     uri.equals(Settings.Secure.getUriFor(Settings.Secure.LOCKSCREEN_DATE_SELECTION)) ||
                     uri.equals(Settings.Secure.getUriFor(Settings.Secure.CENTER_TEXT_CLOCK))) {
                 updateKeyguardStatusSettings();
+	    } else if (uri.equals(Settings.System.getUriFor(
+		Settings.System.QS_SHOW_BATTERY_PERCENT))) {
+			setQsBatteryPercentMode();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CHARGING_ANIMATION))) {
 		updateChargingAnimation();
 			} else if (uri.equals(Settings.System.getUriFor(Settings.System.QS_HEADER_STYLE))) {
@@ -4448,6 +4432,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 	    updateGModStyle();
 	    stockQSHeaderStyle();
             updateQSHeaderStyle();
+	    setQsBatteryPercentMode();
        }
     }
 
@@ -4485,8 +4470,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private void setHeadsUpBlacklist() {
         if (mPresenter != null)
-            mPresenter.setHeadsUpBlacklist();
-    }
+	    mPresenter.setHeadsUpBlacklist();
+	}
 
     private void updateChargingAnimation() {
         mChargingAnimation = Settings.System.getIntForUser(mContext.getContentResolver(),
