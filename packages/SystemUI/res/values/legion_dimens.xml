@@ -93,4 +93,8 @@
 
     <!-- Per app volume -->
     <dimen name="volume_row_app_icon_padding">8dp</dimen>
+
+    <!-- Screenrecord -->
+    <dimen name="screenrecord_dot_size">48dp</dimen>
+
 </resources>
