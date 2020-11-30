@@ -127,4 +127,6 @@
   <!-- Whether doze feature is enabled by default in settings -->
   <java-symbol type="bool" name="config_doze_enabled_by_default" />
 
+  <!-- Default fod pressed icon -->
+  <java-symbol type="integer" name="config_fod_pressed_color" />
 </resources>
