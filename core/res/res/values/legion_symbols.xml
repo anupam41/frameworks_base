@@ -134,4 +134,8 @@
 
   <!-- Default fod pressed icon -->
   <java-symbol type="integer" name="config_fod_pressed_color" />
+
+  <!-- Screen recorder framerate limit -->
+  <java-symbol type="integer" name="config_screenRecorderMaxFramerate" />
+
 </resources>
