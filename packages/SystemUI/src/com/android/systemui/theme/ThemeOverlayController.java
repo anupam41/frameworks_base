@@ -23,6 +23,7 @@ import android.content.IntentFilter;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayManager;
 import android.content.pm.UserInfo;
+import android.content.res.MonetWannabe;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -42,6 +43,7 @@ import com.android.systemui.SystemUI;
 import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.dagger.qualifiers.Background;
 import com.android.systemui.statusbar.policy.ConfigurationController;
+import com.android.systemui.dot.MonetWatcher;
 
 import com.google.android.collect.Sets;
 
@@ -122,14 +124,20 @@ public class ThemeOverlayController extends SystemUI {
         ContentObserver observer = new ContentObserver(mBgHandler) {
              @Override
              public void onChange(boolean selfChange, Uri uri) {
+                 boolean monetEnabled = MonetWannabe.isMonetEnabled(mContext);
                  if (uri.equals(Settings.System.getUriFor(Settings.System.SYSUI_COLORS_ACTIVE))) {
                      Handler mainThreadHandler = new Handler(Looper.getMainLooper());
                      mainThreadHandler.post(
                          () -> {
                              mConfigurationController.reloadUiModeListeners();
                          });
-                } else if (uri.equals(Settings.Secure.getUriFor("accent_dark")) ||
-                         uri.equals(Settings.Secure.getUriFor("accent_light"))) {
+                    } else if (uri.equals(Settings.Secure.getUriFor("accent_dark")) ||
+                         uri.equals(Settings.Secure.getUriFor("accent_light")) ||
+                         uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_ENGINE)) ||
+                         ((uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_COLOR_GEN)) ||
+                           uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_PALETTE)) ||
+                           uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_BASE_ACCENT))) &&
+                           monetEnabled)) {
                      reloadAssets("android");
                      reloadAssets("com.android.systemui");
                  }
@@ -152,6 +160,19 @@ public class ThemeOverlayController extends SystemUI {
         mContext.getContentResolver().registerContentObserver(
                 Settings.Secure.getUriFor("accent_light"),
                 false, observer, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor(Settings.Secure.MONET_BASE_ACCENT),
+                false, observer, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor(Settings.Secure.MONET_ENGINE),
+                false, observer, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor(Settings.Secure.MONET_COLOR_GEN),
+                false, observer, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor(Settings.Secure.MONET_PALETTE),
+                false, observer, UserHandle.USER_ALL);
+        new MonetWatcher(mContext);
     }
 
     private void updateThemeOverlays() {
