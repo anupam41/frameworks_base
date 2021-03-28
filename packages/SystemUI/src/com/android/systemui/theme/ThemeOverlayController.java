@@ -127,8 +127,7 @@ public class ThemeOverlayController extends SystemUI {
                          () -> {
                              mConfigurationController.reloadUiModeListeners();
                          });
-                } else if (uri.equals(Settings.Secure.getUriFor("accent_dark")) ||
-                         uri.equals(Settings.Secure.getUriFor("accent_light"))) {
+                } else if (uri.equals(Settings.Secure.getUriFor("accent_color"))) {
                      reloadAssets("android");
                      reloadAssets("com.android.systemui");
                  }
@@ -146,10 +145,7 @@ public class ThemeOverlayController extends SystemUI {
                 Settings.System.getUriFor(Settings.System.SYSUI_COLORS_ACTIVE),
                 false, observer, UserHandle.USER_ALL);
         mContext.getContentResolver().registerContentObserver(
-                Settings.Secure.getUriFor("accent_dark"),
-                false, observer, UserHandle.USER_ALL);
-        mContext.getContentResolver().registerContentObserver(
-                Settings.Secure.getUriFor("accent_light"),
+                Settings.Secure.getUriFor("accent_color"),
                 false, observer, UserHandle.USER_ALL);
     }
 
