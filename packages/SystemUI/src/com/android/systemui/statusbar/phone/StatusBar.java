@@ -2025,6 +2025,10 @@ public class StatusBar extends SystemUI implements DemoMode,
     @Override
     public void onColorsChanged(ColorExtractor extractor, int which) {
         updateTheme();
+        mHandler.postDelayed(() -> {
+            mQSPanel.getHost().reloadAllTiles();
+        },
+        1000);
     }
 
     @Nullable
