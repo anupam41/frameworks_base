@@ -6088,9 +6088,14 @@ public final class Settings {
         public static final String FOD_COLOR = "fod_color";
 
         /**
-         * Whether to disco the QS tiles or not
+         * Control how to handle the display cutout
          * @hide
          */
+        public static final String SYSUI_COLORS_ACTIVE = "sysui_colors_active";
+
+	/**
+         * Whether to disco the QS tiles or not
+         * @hide
         public static final String QS_TILES_BG_DISCO = "qs_tiles_bg_disco";
 
         /**
