@@ -6061,6 +6061,12 @@ public final class Settings {
         public static final String RIGHT_VERTICAL_BACK_SWIPE_APP_ACTIVITY_ACTION = "right_vertical_back_swipe_app_activity_action";
 
         /**
+         * Whether to change the transparency of the power menu
+         * @hide
+         */
+        public static final String POWER_MENU_BG_ALPHA = "power_menu_bg_alpha";
+
+        /**
          * Set edge gesture Y dead zone
          * 0 - disabled - stock behavior - default
          * 1 - smaller top area of the screen
