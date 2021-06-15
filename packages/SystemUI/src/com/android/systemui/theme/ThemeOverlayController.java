@@ -127,11 +127,29 @@ public class ThemeOverlayController extends SystemUI {
                          () -> {
                              mConfigurationController.reloadUiModeListeners();
                          });
+                } else if (uri.equals(Settings.Secure.getUriFor("accent_dark")) ||
+                         uri.equals(Settings.Secure.getUriFor("accent_light"))) {
+                     reloadAssets("android");
+                     reloadAssets("com.android.systemui");
                  }
-             }
+            }
+            private void reloadAssets(String packageName) {
+                try {
+                    IOverlayManager.Stub.asInterface(ServiceManager.getService("overlay"))
+                            .reloadAssets(packageName, UserHandle.USER_CURRENT);
+                } catch (RemoteException e) {
+                    Log.i(TAG, "Unable to reload resources for " + packageName);
+                }
+            }
         };
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.SYSUI_COLORS_ACTIVE),
+                false, observer, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor("accent_dark"),
+                false, observer, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor("accent_light"),
                 false, observer, UserHandle.USER_ALL);
     }
 

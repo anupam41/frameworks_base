@@ -10570,6 +10570,18 @@ public final class Settings {
         public static final String SHOW_BACK_ARROW_GESTURE = "show_back_arrow_gesture";
 
         /**
+         * Dark Accent Color
+         * @hide
+         */
+        public static final String ACCENT_DARK = "accent_dark";
+
+        /**
+         * Light Accent Color
+         * @hide
+         */
+        public static final String ACCENT_LIGHT = "accent_light";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
