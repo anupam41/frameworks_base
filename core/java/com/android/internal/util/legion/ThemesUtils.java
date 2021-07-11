@@ -78,6 +78,7 @@ public class ThemesUtils {
             "com.android.systemui.brightness.slider.memestrokegradient",
             "com.android.systemui.brightness.slider.minihalf",
             "com.android.systemui.brightness.slider.half",
+	    "com.android.systemui.brightness.slider.a12",
     };
 
     public static final String[] UI_THEMES = {
