@@ -6120,7 +6120,13 @@ public final class Settings {
          */
         public static final String QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
 
-	/**
+        /**
+         * Battery saver profiles
+         * @hide
+         */
+        public static final String POWER_PROFILE_TYPE = "power_profile_type";
+
+        /**
          * Whether to disco the QS tiles or not
          * @hide
 	*/
