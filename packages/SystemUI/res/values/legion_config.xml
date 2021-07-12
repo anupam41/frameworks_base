@@ -12,17 +12,4 @@
 
     <!-- Color of the FOD view -->
     <color name="config_fodColorBackground">#20000000</color>
-
-    <!-- Allow devices override audio panel location to the left side -->
-    <bool name="config_audioPanelOnLeftSide">false</bool>
-
-    <!-- Burn in protection -->
-    <bool name="config_statusBarBurnInProtection">false</bool>
-    <integer name="config_shift_interval">60</integer>
-
-    <!-- Enable face auth only when swiping security view -->
-    <bool name="config_faceAuthOnlyOnSecurityView">false</bool>
-
-	<!-- Whether to use the mask for the quicksettings icons-->
-    <bool name="config_useMaskForQs">true</bool>
 </resources>
