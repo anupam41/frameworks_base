@@ -4915,6 +4915,12 @@ public final class Settings {
          */
         public static final String BUTTON_EXTRA_KEY_MAPPING = "button_extra_keymapping";
 
+	/**
+         * Monet xd
+         * @hide
+         */
+        public static final String MONET_TOGGLE = "monet_toggle";
+
         /**
          * @hide
          */
