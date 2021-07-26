@@ -10490,6 +10490,18 @@ public final class Settings {
                 "lock_screen_transparent_notifications_enabled";
 
         /**
+         * Dark Accent Color
+         * @hide
+         */
+        public static final String ACCENT_DARK = "accent_dark";
+
+        /**
+         * Light Accent Color
+         * @hide
+         */
+        public static final String ACCENT_LIGHT = "accent_light";
+
+        /**
          * @hide
          */
         public static final String ADVANCED_REBOOT = "advanced_reboot";
