@@ -75,7 +75,7 @@
     <!-- navigation end-->
 
     <!-- Daily data usage -->
-    <dimen name="data_usage_padding_start">2dp</dimen>
+    <dimen name="data_usage_padding_start">4dp</dimen>
 
     <!-- Custom header -->
     <dimen name="qs_header_image_offset">25dp</dimen>
