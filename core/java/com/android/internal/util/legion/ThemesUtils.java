@@ -99,10 +99,11 @@ public class ThemesUtils {
      // Switch themes
     private static final String[] SWITCH_THEMES = {
         "com.android.system.switch.oneplus", // 0
-        "com.android.system.switch.narrow", // 1 
-        "com.android.system.switch.contained", // 2 
+        "com.android.system.switch.narrow", // 1
+        "com.android.system.switch.contained", // 2
         "com.android.system.switch.telegram", // 3
         "com.android.system.switch.md2", // 4
+    	"com.android.system.switch.retro", // 5
     };
 
 // QS Tile Styles
