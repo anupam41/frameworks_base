@@ -274,3 +274,4 @@ public static void stockNewTileStyle(IOverlayManager om, int userId) {
         }
     }
 }
+

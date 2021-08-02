@@ -51,7 +51,6 @@ import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
-import com.android.systemui.qs.tiles.ThemeTile;
 import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.SleepScreenTile;
 import com.android.systemui.qs.tiles.SoundSearchTile;
@@ -100,7 +99,6 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<CaffeineTile> mCaffeineTileProvider;
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<HWKeysTile> mHWKeysTileProvider;
-    private final Provider<ThemeTile> mThemeTileProvider;
     private final Provider<SoundTile> mSoundTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<SleepScreenTile> mSleepScreenTileProvider;
@@ -141,7 +139,6 @@ public class QSFactoryImpl implements QSFactory {
             Provider<CaffeineTile> caffeineTileProvider,
             Provider<ScreenshotTile> screenshotTileProvider,
             Provider<HWKeysTile> hWKeysTileProvider,
-            Provider<ThemeTile> themeTileProvider,
             Provider<SoundTile> soundTileProvider,
             Provider<DataSwitchTile> dataSwitchTileProvider,
             Provider<SleepScreenTile> sleepScreenTileProvider,
@@ -178,7 +175,6 @@ public class QSFactoryImpl implements QSFactory {
         mCaffeineTileProvider = caffeineTileProvider;
         mScreenshotTileProvider = screenshotTileProvider;
         mHWKeysTileProvider = hWKeysTileProvider;
-        mThemeTileProvider = themeTileProvider;
         mSoundTileProvider = soundTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mSleepScreenTileProvider = sleepScreenTileProvider;
@@ -251,8 +247,6 @@ public class QSFactoryImpl implements QSFactory {
                 return mScreenshotTileProvider.get();
             case "hwkeys":
                 return mHWKeysTileProvider.get();
-            case "theme":
-                return mThemeTileProvider.get();
             case "sound":
                 return mSoundTileProvider.get();
             case "dataswitch":
