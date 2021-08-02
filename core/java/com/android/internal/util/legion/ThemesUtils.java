@@ -94,7 +94,7 @@ public class ThemesUtils {
         "com.jrinfected.panel.batik", // 1
         "com.jrinfected.panel.kece", // 2
         "com.jrinfected.panel.outline", // 3
-};
+    };
 
      // Switch themes
     private static final String[] SWITCH_THEMES = {
@@ -104,10 +104,13 @@ public class ThemesUtils {
         "com.android.system.switch.telegram", // 3
         "com.android.system.switch.md2", // 4
     	"com.android.system.switch.retro", // 5
+        "com.android.system.switch.oos", // 6
+        "com.android.system.switch.fluid", // 7
+        "com.android.system.switch.android_s", // 8
     };
 
-// QS Tile Styles
-public static final String[] QS_TILE_THEMES = {
+    // QS Tile Styles
+    public static final String[] QS_TILE_THEMES = {
     "com.android.systemui.qstile.default", // 0
     "com.android.systemui.qstile.circletrim", // 1
     "com.android.systemui.qstile.dualtonecircletrim", // 2
