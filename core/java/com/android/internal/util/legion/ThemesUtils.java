@@ -80,39 +80,6 @@ public class ThemesUtils {
             "com.android.systemui.brightness.slider.half",
     };
 
-    public static final String[] SOLARIZED_DARK = {
-            "com.android.theme.solarizeddark.system",
-            "com.android.theme.solarizeddark.systemui",
-    };
-
-    public static final String[] BAKED_GREEN = {
-            "com.android.theme.bakedgreen.system",
-            "com.android.theme.bakedgreen.systemui",
-    };
-
-    public static final String[] CHOCO_X = {
-            "com.android.theme.chocox.system",
-            "com.android.theme.chocox.systemui",
-    };
-
-    public static final String[] PITCH_BLACK = {
-            "com.android.theme.pitchblack.system",
-            "com.android.theme.pitchblack.systemui",
-    };
-
-    public static final String[] DARK_GREY = {
-            "com.android.theme.darkgrey.system",
-            "com.android.theme.darkgrey.systemui",
-    };
-    public static final String[] MATERIAL_OCEAN = {
-            "com.android.theme.materialocean.system",
-            "com.android.theme.materialocean.systemui",
-    };
-    public static final String[] XTENDED_CLEAR = {
-            "com.android.theme.xtendedclear.system",
-            "com.android.theme.xtendedclear.systemui",
-    };
-
     public static final String[] UI_THEMES = {
             "com.android.systemui.ui.default",
             "com.android.systemui.ui.nocornerradius",
