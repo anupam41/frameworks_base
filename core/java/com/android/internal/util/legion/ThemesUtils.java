@@ -65,19 +65,12 @@ public class ThemesUtils {
     };
 
     public static final String[] BRIGHTNESS_SLIDER_THEMES = {
-            "com.android.systemui.brightness.slider.default",
             "com.android.systemui.brightness.slider.daniel",
             "com.android.systemui.brightness.slider.mememini",
             "com.android.systemui.brightness.slider.memeround",
             "com.android.systemui.brightness.slider.memeroundstroke",
             "com.android.systemui.brightness.slider.memestroke",
-            "com.android.systemui.brightness.slider.danielgradient",
-            "com.android.systemui.brightness.slider.mememinigradient",
-            "com.android.systemui.brightness.slider.memeroundgradient",
-            "com.android.systemui.brightness.slider.memeroundstrokegradient",
-            "com.android.systemui.brightness.slider.memestrokegradient",
             "com.android.systemui.brightness.slider.minihalf",
-            "com.android.systemui.brightness.slider.half",
 	    "com.android.systemui.brightness.slider.oos",
 	    "com.android.systemui.brightness.slider.a12",
     };
