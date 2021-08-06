@@ -641,50 +641,7 @@ final class UiModeManagerService extends SystemService {
     }
 
     private void applyWallAccentColor() {
-        try {
-            final Context context = getContext();
-            int defaultColor = 0x000000;
-            WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
-            Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-            Bitmap bitmap = ((BitmapDrawable)wallpaperDrawable).getBitmap();
-            
-            if (bitmap != null) {
-                Palette p = Palette.from(bitmap).generate();
-                int wallColor = fallbackColor;
-                int aa_type = Settings.System.getInt(context.getContentResolver(),Settings.System.AUTO_ACCENT_TYPE, 3);
-                if(aa_type == 0){
-                    wallColor = p.getVibrantColor(defaultColor);
-                } else if (aa_type == 1){
-                    wallColor = p.getLightVibrantColor(defaultColor);
-                } else if(aa_type == 2){
-                    wallColor = p.getDominantColor(defaultColor);
-                } else if(aa_type == 3){
-                    wallColor = p.getDominantColor(defaultColor);
-                    wallColor = ColorUtils.blendARGB(wallColor, Color.WHITE, 0.5f);
-                } else if(aa_type == 4){
-                    wallColor = getAvgColor(bitmap);
-                } else {
-                    Slog.d(TAG, "Accent type not found");
-                }
-
-                // Safety Colors
-                if(wallColor == 0){
-                    if(p.getDominantColor(defaultColor) != 0){
-                        Slog.d(TAG, "Set fallback accent to Dominant");
-                        wallColor = p.getDominantColor(defaultColor);
-                    } else {
-                        Slog.d(TAG, "Set fallback accent to Nez Pink");
-                        wallColor = fallbackColor;
-                    } 
-                }
-                String colorHex = String.format("%08x", (0xFFFFFFFF & wallColor));
-                System.putIntForUser(context.getContentResolver(),System.ACCENT_COLOR, wallColor, UserHandle.USER_CURRENT);
-                setAccentColor(colorHex);
-            }
-        } catch (Exception e) {
-            Slog.d(TAG, "accent EXEP1" + e);
-            // CORVUS ISN'T A GAMING ROM STFU
-        }
+        Slog.d(TAG, "monet shit");
     }
 
     private void setAccentColor(String colorHex) {
