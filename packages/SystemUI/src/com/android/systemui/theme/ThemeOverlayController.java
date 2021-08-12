@@ -28,7 +28,6 @@ import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
@@ -37,12 +36,17 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
+import android.os.Looper;
+import android.os.RemoteException;
+import android.content.pm.PackageManager;
+import android.os.ServiceManager;
+import com.android.systemui.statusbar.policy.ConfigurationController;
+
 
 import com.android.systemui.R;
 import com.android.systemui.SystemUI;
 import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.dagger.qualifiers.Background;
-import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.dot.MonetWatcher;
 
 import com.google.android.collect.Sets;
@@ -76,6 +80,7 @@ public class ThemeOverlayController extends SystemUI {
     private BroadcastDispatcher mBroadcastDispatcher;
     private final Handler mBgHandler;
     private final ConfigurationController mConfigurationController;
+
 
     @Inject
     public ThemeOverlayController(Context context, BroadcastDispatcher broadcastDispatcher,
@@ -125,35 +130,35 @@ public class ThemeOverlayController extends SystemUI {
              @Override
              public void onChange(boolean selfChange, Uri uri) {
                  boolean monetEnabled = MonetWannabe.isMonetEnabled(mContext);
-                 if (uri.equals(Settings.System.getUriFor(Settings.System.SYSUI_COLORS_ACTIVE))) {
+                 if (uri.equals(Settings.Secure.getUriFor("accent_dark")) ||
+                         uri.equals(Settings.Secure.getUriFor("accent_light")) ||
+                         uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_ENGINE)) ||
+                         (uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_BASE_ACCENT)) && monetEnabled)) {
+                     reloadAssets("android");
+                     reloadAssets("com.android.systemui");
+                 } else if (monetEnabled && (uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_COLOR_GEN)) ||
+                           uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_PALETTE)))) {
+                     reloadAssets("android");
+                     reloadAssets("com.android.systemui");
+                     Settings.Secure.putString(mContext.getContentResolver(), 
+                            Settings.Secure.MONET_BASE_ACCENT, String.valueOf(MonetWannabe.updateMonet(mContext)));
+                 } else if (uri.equals(Settings.System.getUriFor(Settings.System.SYSUI_COLORS_ACTIVE))) {
                      Handler mainThreadHandler = new Handler(Looper.getMainLooper());
                      mainThreadHandler.post(
                          () -> {
                              mConfigurationController.reloadUiModeListeners();
                          });
-                    } else if (uri.equals(Settings.Secure.getUriFor("accent_dark")) ||
-                         uri.equals(Settings.Secure.getUriFor("accent_light")) ||
-                         uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_ENGINE)) ||
-                         ((uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_COLOR_GEN)) ||
-                           uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_PALETTE)) ||
-                           uri.equals(Settings.Secure.getUriFor(Settings.Secure.MONET_BASE_ACCENT))) &&
-                           monetEnabled)) {
-                     reloadAssets("android");
-                     reloadAssets("com.android.systemui");
-                 }
-            }
-            private void reloadAssets(String packageName) {
-                try {
-                    IOverlayManager.Stub.asInterface(ServiceManager.getService("overlay"))
-                            .reloadAssets(packageName, UserHandle.USER_CURRENT);
-                } catch (RemoteException e) {
-                    Log.i(TAG, "Unable to reload resources for " + packageName);
                 }
-            }
+             }
+             private void reloadAssets(String packageName) {
+                 try {
+                     IOverlayManager.Stub.asInterface(ServiceManager.getService("overlay"))
+                             .reloadAssets(packageName, UserHandle.USER_CURRENT);
+                 } catch (RemoteException e) {
+                     Log.i(TAG, "Unable to reload resources for " + packageName);
+                 }
+             }
         };
-        mContext.getContentResolver().registerContentObserver(
-                Settings.System.getUriFor(Settings.System.SYSUI_COLORS_ACTIVE),
-                false, observer, UserHandle.USER_ALL);
         mContext.getContentResolver().registerContentObserver(
                 Settings.Secure.getUriFor("accent_dark"),
                 false, observer, UserHandle.USER_ALL);
@@ -171,6 +176,9 @@ public class ThemeOverlayController extends SystemUI {
                 false, observer, UserHandle.USER_ALL);
         mContext.getContentResolver().registerContentObserver(
                 Settings.Secure.getUriFor(Settings.Secure.MONET_PALETTE),
+                false, observer, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.SYSUI_COLORS_ACTIVE),
                 false, observer, UserHandle.USER_ALL);
         new MonetWatcher(mContext);
     }
