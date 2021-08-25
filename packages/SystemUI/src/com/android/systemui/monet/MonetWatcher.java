@@ -28,6 +28,7 @@ public class MonetWatcher {
     private static int fallbackColor = 0xFFFF4081;
     private IOverlayManager mOverlayManager;
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
+
     colorgiber cg = new colorgiber();
 
     private boolean isMonetEnabled(Context context) {
