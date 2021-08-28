@@ -4966,6 +4966,12 @@ public final class Settings {
          */
         public static final String QS_PANEL_BG_USE_NEW_TINT = "qs_panel_bg_use_new_tint";
 
+		/**
+         * Whether to use new QS accent or primaryinverse label color or not
+         * @hide
+         */
+        public static final String QS_PRIMARY_LABEL = "qs_primary_label";
+
         /**
          * Enable/Disable screenshot sound
          * @hide
