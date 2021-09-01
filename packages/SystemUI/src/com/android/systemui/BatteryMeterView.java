@@ -293,7 +293,7 @@ public class BatteryMeterView extends LinearLayout implements
                 return;
             default:
                 mShowBatteryPercent = Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, BATTERY_PERCENT_HIDDEN);
+                        Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, BATTERY_PERCENT_SHOW_OUTSIDE);
                 updatePercentView();
         }
     }
