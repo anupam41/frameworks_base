@@ -22,6 +22,9 @@ public class AccentUtils {
     private final String ACCENT_DARK_SETTING = "accent_dark";
     private final String ACCENT_LIGHT_SETTING = "accent_light";
 
+    private static final String GRADIENT_DARK_SETTING = "gradient_dark";
+    private static final String GRADIENT_LIGHT_SETTING = "gradient_light";
+
     public boolean isResourceDarkAccent(@Nullable String resName) {
         return resName != null && resName.contains("accent_device_default_dark") || resName.contains("colorAccent") || resName.contains("lockscreen_clock_accent_color") || resName.contains("oneplus_accent_color") || resName.contains("settings_accent_color") || resName.contains("settingsHeaderColor") || resName.contains("dismiss_all_icon_color") || resName.contains("avatar_bg_red") || resName.contains("folder_indicator_color") || resName.contains("accent_color_red") || resName.contains("alert_dialog_color_accent_dark") || resName.contains("oneplus_accent_text_color") || resName.contains("accent_device_default");
     }
@@ -29,6 +32,15 @@ public class AccentUtils {
     public boolean isResourceLightAccent(@Nullable String resName) {
         return resName != null && resName.contains("accent_device_default_light") || resName.contains("colorAccent") || resName.contains("lockscreen_clock_accent_color") || resName.contains("oneplus_accent_color") || resName.contains("settings_accent_color") || resName.contains("settingsHeaderColor") || resName.contains("dismiss_all_icon_color") || resName.contains("avatar_bg_red") || resName.contains("folder_indicator_color") || resName.contains("accent_color_red") || resName.contains("alert_dialog_color_accent_dark") || resName.contains("oneplus_accent_text_color") || resName.contains("accent_device_default");
     }
+
+    public boolean isResourceDarkGradient(@Nullable String resName) {
+        return resName != null && resName.contains("accent_device_default_dark") || resName.contains("colorAccent") || resName.contains("lockscreen_clock_accent_color") || resName.contains("oneplus_accent_color") || resName.contains("settings_accent_color") || resName.contains("settingsHeaderColor") || resName.contains("dismiss_all_icon_color") || resName.contains("avatar_bg_red") || resName.contains("folder_indicator_color") || resName.contains("accent_color_red") || resName.contains("alert_dialog_color_accent_dark") || resName.contains("oneplus_accent_text_color") || resName.contains("accent_device_default");
+    }
+
+    public boolean isResourceLightGradient(@Nullable String resName) {
+        return resName != null && resName.contains("accent_device_default_light") || resName.contains("colorAccent") || resName.contains("lockscreen_clock_accent_color") || resName.contains("oneplus_accent_color") || resName.contains("settings_accent_color") || resName.contains("settingsHeaderColor") || resName.contains("dismiss_all_icon_color") || resName.contains("avatar_bg_red") || resName.contains("folder_indicator_color") || resName.contains("accent_color_red") || resName.contains("alert_dialog_color_accent_dark") || resName.contains("oneplus_accent_text_color") || resName.contains("accent_device_default");
+    }
+
 
     public boolean isResourceAccentBackground(@Nullable String resName) {
         return resName != null && resName.contains("accent_background_device_default") || resName.contains("colorAccent") || resName.contains("lockscreen_clock_accent_color") || resName.contains("oneplus_accent_color") || resName.contains("settings_accent_color") || resName.contains("settingsHeaderColor") || resName.contains("dismiss_all_icon_color") || resName.contains("avatar_bg_red") || resName.contains("folder_indicator_color") || resName.contains("accent_color_red") || resName.contains("alert_dialog_color_accent_dark") || resName.contains("oneplus_accent_text_color") || resName.contains("accent_device_default");
@@ -50,6 +62,13 @@ public class AccentUtils {
         return getAccentColor(monet, defaultColor, ACCENT_LIGHT_SETTING);
     }
 
+    public int getDarkGradientColor(int defaultColor) {
+        return getAccentColor(monet, defaultColor, GRADIENT_DARK_SETTING);
+    }
+
+    public int getLightGradientColor(int defaultColor) {
+        return getAccentColor(monet, defaultColor, GRADIENT_LIGHT_SETTING);
+    }
     public int getBackgroundAccentColor(int defaultColor) {
         final Context context = ActivityThread.currentApplication();
         try {

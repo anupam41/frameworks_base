@@ -1073,6 +1073,10 @@ public class Resources {
                             value.data = utils.getOverlayLightAccentColor(value.data);
                         else if (utils.isResourceAccentOverlayDark(resName))
                             value.data = utils.getOverlayDarkAccentColor(value.data);
+                        else if (utils.isResourceDarkGradient(resName))
+                            value.data = utils.getDarkGradientColor(value.data);
+                        else if (utils.isResourceLightGradient(resName))
+                            value.data = utils.getLightGradientColor(value.data);
                     } catch (NotFoundException ignored) {
                     } catch (Exception ex) {
                         Log.e(TAG, ex.getMessage());
