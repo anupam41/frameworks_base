@@ -155,7 +155,7 @@ public class QSTileView extends QSTileBaseView {
             }
         } else if (QsPrimaryLabel) {
             if (state.state == Tile.STATE_ACTIVE) {
-                mLabel.setTextColor(mColorLabelTintActive);
+                mLabel.setTextColor(mColorLabelPrimary);
             } else if (state.state == Tile.STATE_INACTIVE) {
                 mLabel.setTextColor(mColorLabelPrimary);
             }
