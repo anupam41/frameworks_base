@@ -6089,6 +6089,14 @@ public final class Settings {
         public static final String SYSUI_COLORS_ACTIVE = "sysui_colors_active";
 
         /**
+         * Wallpaper based accents
+         * @hide
+         */
+        public static final String USE_WALL_ACCENT = "use_wall_accent";
+        public static final String AUTO_ACCENT_TYPE = "auto_accent_type";
+
+
+        /**
          * Whether to change the transparency of the qs panel
          * @hide
          */
@@ -6335,6 +6343,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_PANEL_BG_USE_FW);
             PRIVATE_SETTINGS.add(ACCENT_COLOR);
             PRIVATE_SETTINGS.add(GRADIENT_COLOR);
+            PRIVATE_SETTINGS.add(USE_WALL_ACCENT);
+            PRIVATE_SETTINGS.add(AUTO_ACCENT_TYPE);
         }
 
         /**
