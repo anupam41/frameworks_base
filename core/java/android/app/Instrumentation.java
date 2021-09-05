@@ -1221,6 +1221,7 @@ public class Instrumentation {
 
         if ("com.google.android.gms".equals(packageName)) {
             setBuildField(packageName, "FINGERPRINT", snetFp);
+            setBuildField(packageName, "MODEL", Build.MODEL + "\u200b");
         }
     }
 
