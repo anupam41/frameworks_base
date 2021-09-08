@@ -73,15 +73,15 @@ public class PixelPropsUtils {
         propsToChange = new HashMap<>();
         propsToChange.put("BRAND", "google");
         propsToChange.put("MANUFACTURER", "Google");
-        propsToChange.put("DEVICE", "redfin");
-        propsToChange.put("PRODUCT", "redfin");
-        propsToChange.put("MODEL", "Pixel 5");
+        propsToChange.put("DEVICE", "barbet");
+        propsToChange.put("PRODUCT", "barbet");
+        propsToChange.put("MODEL", "Pixel 5a");
         propsToChange.put("IS_DEBUGGABLE", false);
         propsToChange.put("IS_ENG", false);
         propsToChange.put("IS_USERDEBUG", false);
         propsToChange.put("IS_USER", true);
         propsToChange.put("TYPE", "user");
-        propsToChange.put("FINGERPRINT", "google/redfin/redfin:11/RQ3A.210805.001.A1/7474174:user/release-keys");
+        propsToChange.put("FINGERPRINT", "google/barbet/barbet:11/RD2A.210905.002/7513089:user/release-keys");
     }
 
     public static void setProps(String packageName) {
