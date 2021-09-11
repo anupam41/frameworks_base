@@ -2138,27 +2138,18 @@ public class StatusBar extends SystemUI implements DemoMode,
     void setUserSetupForTest(boolean userSetup) {
         mUserSetup = userSetup;
     }
-
-    private CustomSettingsObserver mCustomSettingsObserver = new CustomSettingsObserver(mHandler);
-    private class CustomSettingsObserver extends ContentObserver {
-        CustomSettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_SHOW_BATTERY_PERCENT),
-                    false, this, UserHandle.USER_ALL);
+	private void setQsBatteryPercentMode() {
+	if (mQSBarHeader != null) {
+	((QuickStatusBarHeader) mQSBarHeader).setBatteryPercentMode();
 	}
+    }
 
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.QS_SHOW_BATTERY_PERCENT))) {
-                setQsBatteryPercentMode();
-            }
-        }
+	@Override
+	public void setBlockedGesturalNavigation(boolean blocked) {
+	if (getNavigationBarView() != null) {
+	getNavigationBarView().setBlockedGesturalNavigation(blocked);
+	    }
+	}
 
     /**
      * All changes to the status bar and notifications funnel through here and are batched.
@@ -4441,6 +4432,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 	    updateGModStyle();
 	    stockQSHeaderStyle();
             updateQSHeaderStyle();
+	    setQsBatteryPercentMode();
        }
     }
 
@@ -4478,23 +4470,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private void setHeadsUpBlacklist() {
         if (mPresenter != null)
-            mPresenter.setHeadsUpBlacklist();
-    }
-	    public void update() {
-            setQsBatteryPercentMode();
-	    }
-	}
-
-	private void setQsBatteryPercentMode() {
-	if (mQSBarHeader != null) {
-	((QuickStatusBarHeader) mQSBarHeader).setBatteryPercentMode();
-	    }
-	}
-	@Override
-	public void setBlockedGesturalNavigation(boolean blocked) {
-	if (getNavigationBarView() != null) {
-	getNavigationBarView().setBlockedGesturalNavigation(blocked);
-	    }
+	    mPresenter.setHeadsUpBlacklist();
 	}
 
     private void updateChargingAnimation() {
