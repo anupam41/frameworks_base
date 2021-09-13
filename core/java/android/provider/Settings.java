@@ -6101,6 +6101,12 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_ICONS_STYLE = "statusbar_icons_style";
+        
+        /**
+         * Whether to show status bar on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_STATUS_BAR = "lockscreen_status_bar";
 
         /**
          * Show app volume rows in volume panel
