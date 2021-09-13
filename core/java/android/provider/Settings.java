@@ -6113,6 +6113,12 @@ public final class Settings {
          * @hide
          */
         public static final String FOD_COLOR = "fod_color";
+        
+        /**
+         * Whether to show lock icon on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_LOCK_ICON = "lockscreen_lock_icon";
 
         /**
          * Control how to handle the display cutout
