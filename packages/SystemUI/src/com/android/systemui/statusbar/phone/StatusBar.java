@@ -3290,6 +3290,8 @@ public class StatusBar extends SystemUI implements DemoMode,
      * meantime, just update the things that we know change.
      */
     void updateResources() {
+        boolean oos_qsclock = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.OOS_QSCLOCK, 1, UserHandle.USER_CURRENT) == 1;
         // Update the quick setting tiles
         if (mQSPanel != null) {
             mQSPanel.updateResources();
@@ -3299,9 +3301,13 @@ public class StatusBar extends SystemUI implements DemoMode,
             mStatusBarWindowController.refreshStatusBarHeight();
         }
 
+        if (oos_qsclock) {
         mQuickQsTotalHeight = mContext.getResources().getDimensionPixelSize(
                 com.android.internal.R.dimen.quick_qs_total_height);
-
+        } else {
+        mQuickQsTotalHeight = mContext.getResources().getDimensionPixelSize(
+            com.android.internal.R.dimen.quick_qs_total_height_normal);
+        }
         if (mStatusBarView != null) {
             mStatusBarView.updateResources();
         }
